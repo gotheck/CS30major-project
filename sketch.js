@@ -12,4 +12,7 @@ function setup() {
 
 function draw() {
   background(220);
+  for (let i=0; i<10; i++) {
+    rect(50*i, 10*i, 50, 100);
+  }
 }
