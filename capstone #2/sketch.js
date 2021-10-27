@@ -5,14 +5,13 @@ let theTargets = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  let myTarget = new Target
+  let myTarget = new Target(width/2, height/2);
   theTargets.push(myTarget);
 }
 
 function draw() {
   background(0);
   for (let i=0; i< theTargets.length; i++) {
-    for (let j=0; j< theTargets.length; j++) {
     theTargets[i].move();
     theTargets[i].display();
   }
@@ -28,13 +27,14 @@ class Target {
     this.x = x;
     this.y = y;
     this.radius = random(25, 40);
+    this.theColor = color(random(255), random(255), random(255), random(255));
     this.dx = random(-10,10);
-    this.theColor
     this.dy = random(-10,10);
         
   }
   display() {
     noStroke();
+    fill(this.theColor);
     circle(this.x, this.y, this.radius*2);
   }
   move() {
