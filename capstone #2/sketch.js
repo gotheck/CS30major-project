@@ -24,8 +24,8 @@ function mousePressed() {
 
 class Target {
   constructor(x, y) {
-    this.x = x;
-    this.y = y;
+    this.x = random(x);
+    this.y = random(y);
     this.radius = random(25, 40);
     this.theColor = color(random(255), random(255), random(255), random(255));
     this.dx = random(-10,10);
