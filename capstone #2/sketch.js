@@ -1,6 +1,7 @@
 //cap stone project number 2 //
 let myTarget;
 let theTargets = [];
+let xTime;
 
 
 function setup() {
