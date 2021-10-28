@@ -1,13 +1,16 @@
 //cap stone project number 2 //
 let myTarget;
 let theTargets = [];
-let xTime;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  let myTarget = new Target(width/2, height/2);
-  theTargets.push(myTarget);
+  // for (let index = 0; index < 10; index++) {
+  //   window.setInterval(Target, 500);
+  // }
+  //next 2 lines will spawn a ball as soon as the program is ran.
+  // let myTarget = new Target(width/2, height/2);
+  // theTargets.push(myTarget);
 }
 
 function draw() {
@@ -16,12 +19,15 @@ function draw() {
     theTargets[i].move();
     theTargets[i].display();
   }
+  checkIfTouchTrue();
 }
 
 function mousePressed() {
   let myTarget = new Target(mouseX, mouseY); 
   theTargets.push(myTarget);
 }
+
+function 
 
 class Target {
   constructor(x, y) {
@@ -31,16 +37,27 @@ class Target {
     this.theColor = color(random(255), random(255), random(255), random(255));
     this.dx = random(-10,10);
     this.dy = random(-10,10);
-        
+    this.xTime = random(1000);
+    this.yTime = random(1000);
+    this.timeChange = random(0.001, 0.1);
   }
+
   display() {
-    noStroke();
-    fill(this.theColor);
-    circle(this.x, this.y, this.radius*2);
+    for (let target of theTargets) {
+      noStroke();
+      fill(target.theColor);
+      circle(target.x, target.y, target.radius*2); 
+    }
   }
   move() {
-    this.x += this.dx;
-    this.y += this.dy;
+    for (let aTarget of theTargets) {
+      aTarget.x = noise(aTarget.xTime) * width;
+      aTarget.y = noise(aTarget.yTime) * height;
+      aTarget.xTime += 0.01;
+      aTarget.yTime += 0.01;
+    }
+    // this.x += this.dx;
+    // this.y += this.dy;
 
     //edge check
     if (this.x - this.radius < 0 || this.x + this.radius > width) {
