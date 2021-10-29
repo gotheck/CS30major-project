@@ -55,6 +55,7 @@ class Target {
     this.xTime = random(500);
     this.yTime = random(500);
     this.timeChange = random(0.001, 0.1);
+    theTargets.push()
   }
 
   display() {
