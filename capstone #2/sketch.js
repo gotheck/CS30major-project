@@ -1,7 +1,7 @@
 //cap stone project number 2 //
 let myTarget;
 let theTargets = [];
-
+let inOut;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -36,7 +36,7 @@ function mousePressed() {
 }
 
 function checkIfTouchTrue() {
-  for (let i = theTargets.length-1; i > 0; i--) {
+  for (let i = theTargets.length-1; i >= 0; i--) {
     let onTarget = dist(theTargets[i].x, theTargets[i].y, mouseX, mouseY);
     if (onTarget < theTargets[i].radius) {
       theTargets.splice(i,1);
@@ -48,29 +48,45 @@ class Target {
   constructor(x, y) {
     this.x = random(x);
     this.y = random(y);
-    this.radius = random(45, 55);
+    this.radius = 50;
     this.theColor = color(random(255), random(255), random(255), random(255));
     this.dx = random(-10,10);
     this.dy = random(-10,10);
     this.xTime = random(500);
     this.yTime = random(500);
     this.timeChange = random(0.001, 0.1);
-    theTargets.push()
+    theTargets.push();
   }
+  
 
   display() {
     for (let target of theTargets) {
       noStroke();
       fill(target.theColor);
       circle(target.x, target.y, target.radius*2); 
+      if(target.radius > 120){
+        inOut = false;
+      }
+        
+      if(target.radius < 10){
+        inOut = true;
+      }
+        
+      if(inOut){
+        target.radius++;
+      }
+        
+      if(!inOut){
+        target.radius--;
+      }
     }
   }
   move() {
     for (let aTarget of theTargets) {
-      aTarget.x = noise(aTarget.xTime) * width;
-      aTarget.y = noise(aTarget.yTime) * height;
-      aTarget.xTime += 0.001;
-      aTarget.yTime += 0.001;
+      // aTarget.x = noise(aTarget.xTime) * width;
+      // aTarget.y = noise(aTarget.yTime) * height;
+      // aTarget.xTime += 0.001;
+      // aTarget.yTime += 0.001;
     }
     // this.x += this.dx;
     // this.y += this.dy;
@@ -81,6 +97,8 @@ class Target {
     }
     if (this.y - this.radius < 0 || this.y + this.radius > height) {
       this.dy *= -1;
+      
     }
+    
   }
 }
