@@ -1,15 +1,18 @@
 //cap stone project number 2 //
 let myTarget;
+let myTarget2;
 let theTargets = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  let myTarget2 = new Thing(width/2, height/2);
   let myTarget = new Target(width/2, height/2);
   theTargets.push(myTarget);
 }
 
 function draw() {
   background(0);
+  
   for (let i=0; i< theTargets.length; i++) {
     theTargets[i].move();
     theTargets[i].display();
@@ -62,4 +65,36 @@ class Target {
     }
   }
 }
-
+class Thing {
+  constructor(mapX, mapY, x, y, canvas) {
+    this.x = x;
+    this.y = y;	
+    this.mapX = mapX;
+    this.mapY = mapY;
+    this.height = 50;
+    this.width = 50;
+    this.direction = Math.floor(Math.random()*359);
+    this.speed = Math.floor(Math.random()*50) + 5;
+    this.erratic = Math.floor(Math.random()* 4) + 1 === 1;
+    this.gravitationalPull = 0;
+    this.canvas = canvas;
+    this.tick = 0;
+    this.changeAt = Math.floor(Math.random()*50) + 1;
+    this.correctXY();
+    this.hit = false;
+  }
+  display() {
+    Thing.prototype.draw = function(ctx, sprite) {
+    
+      if(this.hit === false) {
+    
+        ctx.drawImage(sprite, this.getMapX(), this.getMapY(),
+          90, 90, 
+          this.getX(), this.getY(), 
+          this.getWidth(), this.getHeight());
+      }
+      
+      return this;
+    };
+  }
+}
