@@ -3,13 +3,9 @@ let myTarget;
 let theTargets = [];
 let inOut;
 let targetTimer;
-let resetButton;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  resetButton = createButton("do not press");
-  resetButton.position(,);
-  resetButton.mousePressed(gameClear);
   // let myTarget = new Target(width/2, height/2);
   // theTargets.push(myTarget);
   // for (let index = 0; index < 10; index++) {
@@ -18,8 +14,8 @@ function setup() {
   // window.setInterval(Target, 1000);
   // }
   //next 2 lines will spawn a ball as soon as the program is ran.
-  let myTarget = new Target(width/2, height/2);
-  theTargets.push(myTarget);
+  // let myTarget = new Target(width/2, height/2);
+  // theTargets.push(myTarget);
 }
 
 function draw() {
@@ -33,18 +29,12 @@ function draw() {
 }
 
 function mousePressed() {
-  // new Target();
-  // theTargets[theTargets-1].x = mouseX;
-  // theTargets[theTargets=1].y = mouseY;
-  // let myTarget = new Target(mouseX, mouseY); 
-  // theTargets.push(myTarget);
+  new Target();
+  theTargets[theTargets-1].x = mouseX;
+  theTargets[theTargets=1].y = mouseY;
+  let myTarget = new Target(mouseX, mouseY); 
+  theTargets.push(myTarget);
 }
-
-function gameClear() {
-  let reset = 
-}
-
-
 
 function checkIfTouchTrue() {
   for (let i = theTargets.length-1; i >= 0; i--) {

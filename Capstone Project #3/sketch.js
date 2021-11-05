@@ -1,7 +1,8 @@
-//cap stone project number 2 //
+//cap stone project number 3 //
 let myTarget;
 let myTarget2;
 let theTargets = [];
+let inOut;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -46,6 +47,21 @@ class Target {
       noStroke();
       fill(target.theColor);
       circle(target.x, target.y, target.radius*2); 
+      if(target.radius > 60){
+        inOut = false;
+      }
+        
+      if(target.radius < 10){
+        inOut = true;
+      }
+        
+      if(inOut){
+        target.radius++;
+      }
+        
+      if(!inOut){
+        target.radius--;
+      }
     }
   }
   move() {
@@ -65,36 +81,4 @@ class Target {
     }
   }
 }
-// class Thing {
-//   constructor(mapX, mapY, x, y, canvas) {
-//     this.x = x;
-//     this.y = y;	
-//     this.mapX = mapX;
-//     this.mapY = mapY;
-//     this.height = 50;
-//     this.width = 50;
-//     this.direction = Math.floor(Math.random()*359);
-//     this.speed = Math.floor(Math.random()*50) + 5;
-//     this.erratic = Math.floor(Math.random()* 4) + 1 === 1;
-//     this.gravitationalPull = 0;
-//     this.canvas = canvas;
-//     this.tick = 0;
-//     this.changeAt = Math.floor(Math.random()*50) + 1;
-//     this.correctXY();
-//     this.hit = false;
-//   }
-//   display() {
-//     Thing.prototype.draw = function(ctx, sprite) {
-    
-//       if(this.hit === false) {
-    
-//         ctx.drawImage(sprite, this.getMapX(), this.getMapY(),
-//           90, 90, 
-//           this.getX(), this.getY(), 
-//           this.getWidth(), this.getHeight());
-//       }
-      
-//       return this;
-//     };
-//   }
-// }
+
