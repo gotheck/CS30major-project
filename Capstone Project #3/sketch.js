@@ -2,6 +2,7 @@
 let myTarget;
 let myTarget2;
 let theTargets = [];
+let theThings = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -79,22 +80,17 @@ class Thing {
     this.gravitationalPull = 0;
     this.canvas = canvas;
     this.tick = 0;
+    this.radius = random(45, 55);
     this.changeAt = Math.floor(Math.random()*50) + 1;
     this.correctXY();
     this.hit = false;
   }
-  display() {
-    Thing.prototype.draw = function(ctx, sprite) {
-    
+  display(ctx, sprite) {
+    for (let thing of theThings) {
       if(this.hit === false) {
-    
-        ctx.drawImage(sprite, this.getMapX(), this.getMapY(),
-          90, 90, 
-          this.getX(), this.getY(), 
-          this.getWidth(), this.getHeight());
-      }
-      
-      return this;
-    };
+      noStroke();
+      fill(thing.theColor);
+      circle(this.x, this.y, 90, 90, thing.radius*2); 
+    }
   }
 }
