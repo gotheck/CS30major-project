@@ -2,19 +2,20 @@
 let myTarget;
 let theTargets = [];
 let inOut;
+let targetTimer;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   // let myTarget = new Target(width/2, height/2);
   // theTargets.push(myTarget);
   // for (let index = 0; index < 10; index++) {
-  //   mousePressed();
+  //   Target();
   // }
-  // window.setInterval(mousePressed, 1000);
+  // window.setInterval(Target, 1000);
   // }
   //next 2 lines will spawn a ball as soon as the program is ran.
-  let myTarget = new Target(width/2, height/2);
-  theTargets.push(myTarget);
+  // let myTarget = new Target(width/2, height/2);
+  // theTargets.push(myTarget);
 }
 
 function draw() {
@@ -28,9 +29,9 @@ function draw() {
 }
 
 function mousePressed() {
-  // new Target();
-  // theTargets[theTargets-1].x = mouseX;
-  // theTargets[theTargets=1].y = mouseY;
+  new Target();
+  theTargets[theTargets-1].x = mouseX;
+  theTargets[theTargets=1].y = mouseY;
   let myTarget = new Target(mouseX, mouseY); 
   theTargets.push(myTarget);
 }
@@ -83,13 +84,13 @@ class Target {
   }
   move() {
     for (let aTarget of theTargets) {
-      // aTarget.x = noise(aTarget.xTime) * width;
-      // aTarget.y = noise(aTarget.yTime) * height;
-      // aTarget.xTime += 0.001;
-      // aTarget.yTime += 0.001;
+      aTarget.x = noise(aTarget.xTime) * width;
+      aTarget.y = noise(aTarget.yTime) * height;
+      aTarget.xTime += 0.001;
+      aTarget.yTime += 0.001;
     }
-    // this.x += this.dx;
-    // this.y += this.dy;
+    this.x += this.dx;
+    this.y += this.dy;
 
     //edge check
     if (this.x - this.radius < 0 || this.x + this.radius > width) {

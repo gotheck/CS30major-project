@@ -1,12 +1,15 @@
-//cap stone project number 2 //
+//cap stone project number 3 //
 let myTarget;
 let myTarget2;
 let theTargets = [];
+
 let theThings = [];
+let inOut;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  let myTarget2 = new Thing(width/2, height/2);
+  let myTarget2 = new Target(width/2, height/2);
   let myTarget = new Target(width/2, height/2);
   theTargets.push(myTarget);
 }
@@ -47,6 +50,21 @@ class Target {
       noStroke();
       fill(target.theColor);
       circle(target.x, target.y, target.radius*2); 
+      if(target.radius > 60){
+        inOut = false;
+      }
+        
+      if(target.radius < 10){
+        inOut = true;
+      }
+        
+      if(inOut){
+        target.radius++;
+      }
+        
+      if(!inOut){
+        target.radius--;
+      }
     }
   }
   move() {
@@ -94,3 +112,4 @@ class Thing {
 //     }
 //   }
 }
+
