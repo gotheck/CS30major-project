@@ -85,12 +85,12 @@ class Thing {
     this.correctXY();
     this.hit = false;
   }
-  display(ctx, sprite) {
-    for (let thing of theThings) {
-      if(this.hit === false) {
-      noStroke();
-      fill(thing.theColor);
-      circle(this.x, this.y, 90, 90, thing.radius*2); 
-    }
-  }
+//   display(ctx, sprite) {
+//     for (let thing of theThings) {
+//       if(this.hit === false) {
+//       noStroke();
+//       fill(thing.theColor);
+//       circle(this.x, this.y, 90, 90, thing.radius*2); 
+//     }
+//   }
 }
